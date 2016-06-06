@@ -1,0 +1,17 @@
+{
+  "name": "angular2",
+  "description": "\"#angular 2\"",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/prasanthbendra/angular2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  }
+}
