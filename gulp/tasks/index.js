@@ -1,7 +1,8 @@
 var config = require('../config');
 var gulp = require("gulp");
 var concat = require("gulp-concat");
-var htmlreplace = require('gulp-html-replace');
+var tsc = require("gulp-typescript");
+var tsProject = tsc.createProject('tsconfig.json');
 var directories = require("../util/list-directories");
 
 var modules = directories(config.source.module).map(function(module){
@@ -10,14 +11,11 @@ var modules = directories(config.source.module).map(function(module){
 
 gulp.task("index", ["index-app"], function() {
     return gulp.src(config.source.root + "index.html")
-    	.pipe(htmlreplace({
-    		"modules": modules
-    	}))
         .pipe(gulp.dest(config.dest.root));
 });
 
 gulp.task("index-app", function() {
-    return gulp.src([config.source.root + "app.js", config.source.root + "config.js"])
-    	.pipe(concat("app.js"))
-        .pipe(gulp.dest(config.dest.root));
+    return gulp.src(config.source.root + "*.ts")
+    	.pipe(tsc(tsProject))
+        .pipe(gulp.dest(config.dest.js));
 });

@@ -11,8 +11,7 @@ var tasks = directories(config.source.module).map(function(module){
 tasks.forEach(function(task){
 	gulp.task(task + "-js", function(){
 		var module = task.replace("module-", "");
-		return gulp.src(config.source.module + module + "/**/*.js")
-		.pipe(concat(module + ".min.js"))
+		return gulp.src(config.source.module + module + "/**/*.ts")
 		.pipe(gulp.dest(config.dest.js));
 	});
 
